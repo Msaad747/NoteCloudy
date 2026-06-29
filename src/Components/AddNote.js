@@ -1,27 +1,36 @@
 import React, { useContext, useState } from "react";
 import NoteContext from "../Context/Note/NoteContext";
-
-
+import UserContext from "../Context/User/UserContext";
 
 const AddNote = () => {
   const [newnote, setNewNote] = useState({
     title: "",
     description: "",
-    tags: "",
+    tag: "",
   });
   const { addnote } = useContext(NoteContext);
-  const AddNoteClick = () => {
+  const {alertUser}=useContext(UserContext)
+  const AddNoteClick = async() => {
     console.log("Note added");
     if (newnote.title.trim() === "") {
-    alert("Title is required");
-    return;
-  }
-    addnote(newnote);
-   setNewNote({
-    title: "",
-    description: "",
-    tags: "",
-  })
+      alert("Title is required");
+      return;
+    }
+
+    const response = await addnote(newnote);
+    setNewNote({
+      title: "",
+      description: "",
+      tag: "",
+    });
+    if(response.success){
+
+      alertUser("Note added Successfully","success")
+    }
+    else{
+      alertUser("Some Error Occurred","danger")
+
+    }
   };
   const onChange = (e) => {
     setNewNote({ ...newnote, [e.target.name]: e.target.value });
@@ -30,7 +39,7 @@ const AddNote = () => {
   return (
     <>
       <div className="mb-3 my-3">
-        <label htmlFor="exampleFormControlInput1" className="form-label">
+        <label htmlFor="title" className="form-label">
           Title
         </label>
         <input
@@ -40,11 +49,11 @@ const AddNote = () => {
           name="title"
           value={newnote.title}
           onChange={onChange}
-          placeholder="Add your Note"
-        />
+          placeholder="Add your Note Title"
+          />
       </div>
       <div className="mb-3">
-        <label htmlFor="exampleFormControlTextarea1" className="form-label">
+        <label htmlFor="description" className="form-label">
           Description
         </label>
         <textarea
@@ -54,13 +63,29 @@ const AddNote = () => {
           name="description"
           onChange={onChange}
           rows="3"
+          placeholder="Add Description"
         ></textarea>
+        <div className="my-2">
+
+        <label htmlFor="tag" className="form-label">
+          Tag
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          id="tag"
+          name="tag"
+          value={newnote.tag}
+          onChange={onChange}
+          placeholder="Add Tag"
+          />
+          </div>
         <div className="col-auto ">
           <button
             type="submit"
             className="btn btn-primary mb-3 my-2"
             onClick={AddNoteClick}
-            disabled={newnote.title.trim() === ""}
+            disabled={newnote.title.trim() === ""||newnote.title.length<5}
           >
             Add Note
           </button>

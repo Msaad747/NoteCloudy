@@ -6,7 +6,7 @@ const Navbar = (props) => {
     <>
       <nav
         className="navbar navbar-expand-lg navbar-dark bg-dark"
-        style={{ borderBottom: "3px solid #fbfafd" }}
+        style={{ borderBottom: "1px solid #444" }} 
       >
         <div className="container-fluid">
           <Link to="/" className="navbar-brand" href="/">
