@@ -19,7 +19,6 @@ const NoteState = (props) => {
   // Fetch all Notes
   const fetchAllNotes = async () => {
     try {
-      console.log(process.env.REACT_APP_SERVER);
       const response = await fetch(`${server}/fetchAllNotes`, {
         method: "GET",
         headers: {

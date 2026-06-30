@@ -26,7 +26,8 @@ const SignUp = () => {
   };
 
   const SignUpClick = async () => {
-    const response = await createUser(user);
+    
+    const response = await createUser({...user,age:user.age?user.age:null});
     if (response.success) {
       setSignupError("");
       signupCloseref.current.click();

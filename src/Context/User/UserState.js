@@ -21,22 +21,24 @@ const UserState = (props) => {
     }, 1500);
   };
 
-  const server =
-   process.env.REACT_APP_SERVER;
-    // ||
-    // "http://localhost:5000";
+  const server = process.env.REACT_APP_SERVER;
+  // ||
+  // "http://localhost:5000";
 
   // Create User
   const createUser = async (user) => {
     try {
       
-      const respones = await fetch(`${server}/usersData/createuser`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const respones = await fetch(
+        `https://notecloudybackend-production.up.railway.app/usersData/createuser`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
         },
-        body: JSON.stringify(user),
-      });
+      );
       const data = await respones.json();
 
       if (data.message === "User created") {
