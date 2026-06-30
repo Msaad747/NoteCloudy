@@ -63,10 +63,6 @@ The application will be available at:
 http://localhost:3000
 ```
 
-## 📸 Screenshots
-
-Add screenshots of your application here.
-
 ## 📄 License
 
 This project is licensed under the MIT License.
