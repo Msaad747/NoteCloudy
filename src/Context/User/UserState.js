@@ -21,7 +21,10 @@ const UserState = (props) => {
     }, 1500);
   };
 
-  const server = process.env.SERVER;
+  const server =
+   process.env.REACT_APP_SERVER
+    // ||
+    // "http://localhost:5000";
 
   // Create User
   const createUser = async (user) => {

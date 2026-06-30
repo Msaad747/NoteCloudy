@@ -11,12 +11,17 @@ const NoteState = (props) => {
     description: "",
     tag: "",
   });
-  const server = process.env.SERVER;
+  const server =
+   process.env.REACT_APP_SERVER 
+  //  || 
+  //  "http://localhost:5000";
   let token = localStorage.getItem("token");
 
   // Fetch all Notes
   const fetchAllNotes = async () => {
     try {
+      console.log(   process.env.REACT_APP_SERVER 
+)
       const response = await fetch(`${server}/fetchAllNotes`, {
         method: "GET",
         headers: {
