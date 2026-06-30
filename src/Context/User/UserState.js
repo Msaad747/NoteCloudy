@@ -22,13 +22,14 @@ const UserState = (props) => {
   };
 
   const server =
-   process.env.REACT_APP_SERVER
+   process.env.REACT_APP_SERVER;
     // ||
     // "http://localhost:5000";
 
   // Create User
   const createUser = async (user) => {
     try {
+      
       const respones = await fetch(`${server}/usersData/createuser`, {
         method: "POST",
         headers: {

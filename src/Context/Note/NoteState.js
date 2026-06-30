@@ -11,24 +11,22 @@ const NoteState = (props) => {
     description: "",
     tag: "",
   });
-  const server =
-   process.env.REACT_APP_SERVER 
-  //  || 
-  //  "http://localhost:5000";
+  const server = process.env.REACT_APP_SERVER;
+  
+  console.log("Server:", server);
+  
   let token = localStorage.getItem("token");
 
   // Fetch all Notes
   const fetchAllNotes = async () => {
     try {
-      console.log(   process.env.REACT_APP_SERVER 
-)
+      console.log(process.env.REACT_APP_SERVER);
       const response = await fetch(`${server}/fetchAllNotes`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${authtoken || token}`,
-        },
-        // body: JSON.stringify({"adminPass":"admin6767"})
+        }
       });
       const data = await response.json();
       setNotes(data.notes || []);
