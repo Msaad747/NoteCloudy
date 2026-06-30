@@ -11,7 +11,7 @@ const NoteState = (props) => {
     description: "",
     tag: "",
   });
-  const server = "http://localhost:5000";
+  const server = process.env.SERVER;
   let token = localStorage.getItem("token");
 
   // Fetch all Notes
