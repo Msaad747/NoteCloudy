@@ -13,10 +13,9 @@ const NoteState = (props) => {
   });
   const server = process.env.REACT_APP_SERVER;
   
-  console.log("Server:", server);
   
   let token = localStorage.getItem("token");
-
+  
   // Fetch all Notes
   const fetchAllNotes = async () => {
     try {
